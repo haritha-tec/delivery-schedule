@@ -1,0 +1,21 @@
+<div class="example-form"> 
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Place</mat-label>
+        <input matInput [(ngModel)]="place"  >
+      </mat-form-field>
+     
+      <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>dd-mm-yyyy</mat-label>
+              <input matInput [matDatepicker]="picker1" [(ngModel)]="date" name="date">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="example-full-width">
+          <input matTimepicker placeholder="00:00" [(ngModel)]="time" name="time" >
+          <mat-icon>alarm_on</mat-icon>
+      </mat-form-field>
+      
+</div>
+
+

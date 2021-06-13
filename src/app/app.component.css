@@ -1,0 +1,14 @@
+.flex-container {
+    display: flex;
+    align-items: stretch;
+    height: 90%;
+  }
+.flex-container > div {
+    color: white;
+    font-size: 30px;
+  }
+.sidebar{
+    background-color:#FFFFFF;
+    flex-grow: 2;
+    width: 250px;
+  }
