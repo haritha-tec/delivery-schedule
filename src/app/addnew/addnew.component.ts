@@ -1,10 +1,10 @@
-import {Component, ViewContainerRef, ComponentFactoryResolver, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog'
-import{IntermediateComponent} from '../intermediate/intermediate.component'
-import{IntermediateService} from '../intermediate.service';
-import{Schedule}from '../datamodel/Schedule'
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Schedule } from '../datamodel/Schedule';
 import { ScheduleDetails } from '../datamodel/ScheduleDetails';
-import {LocalstorageService} from '../localstorage/localstorage.service'
+import { IntermediateService } from '../intermediate.service';
+import { IntermediateComponent } from '../intermediate/intermediate.component';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Component({
   selector: 'app-addnew',
@@ -13,75 +13,64 @@ import {LocalstorageService} from '../localstorage/localstorage.service'
 })
 
 export class AddnewComponent implements OnInit {   
-  
    
-  
     public newIntermediateScheduleList:ScheduleDetails[]=[];
     newSchedule:Schedule=new Schedule();
-    newScheduleList:any[]=[];
     count:number=0;
     
     showAlert:boolean=false;
-  constructor(public dialog: MatDialog,
+  
+    constructor(public dialog: MatDialog,
     public service: IntermediateService,
     private r: ComponentFactoryResolver,
     private localStorageService:LocalstorageService,
     ) {
-
     this.service=service;
     this.localStorageService=localStorageService;
-    
-    
-
    }
-  ngOnInit() {
-     
-    this.service.subscriber$.subscribe((Intermediateschedule:ScheduleDetails)=>{    
-    
-    this.newIntermediateScheduleList.push(Intermediateschedule);    
-   
-    })
 
+  ngOnInit() {
+    this.service.subscriber$.subscribe((Intermediateschedule:ScheduleDetails)=>{    
+    this.newIntermediateScheduleList.push(Intermediateschedule);  
+    });
   }
- 
  
 openDialog():void{
   const dialogRef = this.dialog.open(IntermediateComponent, {  
     width: '1000px',
     height:'500px'
-
   });
-
   }
  
-  save(){  
-    if(this.newSchedule && this.newSchedule!=null){     
-      this.count++;
-      this.newSchedule.scheduleID="sch" + this.count;
-    }
-    
-    this.newScheduleList.push(this.newSchedule);
-    this.newScheduleList[0]["Intermediate"].push(this.newIntermediateScheduleList);    
-    
+  save(){
+    this.count++;
+    this.newSchedule.scheduleID="Sch" + this.count;
+    this.newSchedule['Intermediate'] = this.newIntermediateScheduleList;
+
     // Save to local
-   
-    this.localStorageService.setInfo(this.newScheduleList,this.newSchedule.scheduleID);
+   if(this.validate()){
+    this.localStorageService.setInfo(this.newSchedule,this.newSchedule.scheduleID);
     this.resetAfterSave();
-
-    if(this.newSchedule && this.newSchedule!=null){
-      this.showAlert=true;
-    }  
+    alert("The schedule has been saved!!"); 
+   }
+   else{
+    this.showAlert=true;
+   }
   }
-  resetAfterSave(){
 
+  validate():boolean{
+    if((this.newSchedule.startPlace !='' && this.newSchedule.startdate !=null) && 
+        (this.newSchedule.destPlace!='' && this.newSchedule.destDate!=null)){
+          return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  resetAfterSave(){
     this.newIntermediateScheduleList=[];
-    this.newSchedule.destDate=null;
-    this.newSchedule.destPlace='';
-    this.newSchedule.destTime=null;
-    this.newSchedule.scheduleID='';
-    this.newSchedule.startPlace='';
-    this.newSchedule.startTime=null;
-    this.newSchedule.startdate=null;
+    this.newSchedule = new Schedule();
   }
 
 }
