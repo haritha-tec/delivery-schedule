@@ -1,0 +1,34 @@
+<div>Add Intermediate Destinantion
+    <div class="example-form"> 
+        <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Place</mat-label>
+            <input matInput [(ngModel)]="entity.Place"  name="place" required >
+          </mat-form-field>
+         
+          <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>dd-mm-yyyy</mat-label>
+                  <input matInput [matDatepicker]="picker1" [(ngModel)]="entity.Date"  name="date" required>
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+      
+              <mat-form-field appearance="fill" class="example-full-width">
+              <input matTimepicker placeholder="00:00" [(ngModel)]="entity.Time"  name="time" >
+              <mat-icon>alarm_on</mat-icon>
+          </mat-form-field>
+          
+          <button mat-icon-button  (click)="close()">
+            <mat-icon >clear</mat-icon>
+        </button>    
+        
+        <button mat-raised-button (click)="addDestination($event)">Add        
+        </button>
+        <div *ngIf="showAlert" class="alert alert-warning" role="alert">
+            <strong>Please Enter All Required Fields!!</strong>
+          </div>
+          
+    </div>
+
+
+   
+</div>

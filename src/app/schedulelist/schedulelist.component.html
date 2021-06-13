@@ -1,0 +1,31 @@
+<div *ngFor="let item of eachSchedues" >
+  <ul>
+    <li>
+      <span><b>
+        {{item.scheduleID}}
+      </b>
+       
+      </span>
+    </li>
+    <li>
+      {{item.startPlace}} <b>
+        to 
+      </b>{{item.destPlace}} {{item.startdate | date:'shortDate'}} - {{item.destDate | date:'shortDate' }}
+    </li>
+    <li>
+      via 
+      <span *ngFor="let inter of item.Intermediate[0]">
+        <span>
+         {{inter.Place}}
+          <span>{{inter.Date | date:'shortDate'}} </span>
+        </span>
+      </span>
+    </li>
+     
+    
+  </ul>
+  
+
+
+
+</div>

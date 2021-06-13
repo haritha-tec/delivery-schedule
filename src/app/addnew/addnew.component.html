@@ -1,0 +1,60 @@
+<div class="example-form"> 
+   <div>Start Point</div>  
+    <mat-form-field appearance="fill" class="example-full-width">
+      <input matInput placeholder="Place" [(ngModel)]="newSchedule.startPlace "  >
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>dd/mm/yyy</mat-label>
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="newSchedule.startdate "  >
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="example-full-width">
+        <input matTimepicker class="custompicker" placeholder="Please select time..." [(ngModel)]="newSchedule.startTime"    >
+        <mat-icon>alarm_on</mat-icon>
+    </mat-form-field>
+
+    <div class="example-button-row">
+        <button mat-raised-button (click)="openDialog()">Intermediate Destinantion
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    
+        <div *ngFor="let item of newIntermediateScheduleList; let i = index">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <input matInput placeholder="Place" [(ngModel)]="item.Place" name="place2">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>dd/mm/yyy</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="item.Date"  name="date2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="example-full-width">
+                <input matTimepicker class="custompicker" placeholder="Please select time..." [(ngModel)]="item.Time"  name="time2"  >
+                <mat-icon>alarm_on</mat-icon>
+            </mat-form-field>
+
+        </div>
+
+    <div>Destination Point</div>
+    <mat-form-field appearance="fill" class="example-full-width">
+        <input matInput placeholder="Place" [(ngModel)]="newSchedule.destPlace"  name="place2">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>dd/mm/yyyy</mat-label>
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="newSchedule.destDate"  name="date2">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="example-full-width">
+        <input matTimepicker class="custompicker" placeholder="Please select time..." [(ngModel)]="newSchedule.destTime"  name="time2"  >
+        <mat-icon>alarm_on</mat-icon>
+    </mat-form-field>
+
+    <button  class="btnsave"  (click)="save()">Save    
+    </button>
+    
+</div>
+

@@ -1,0 +1,22 @@
+mat-sidenav {
+    width: 280px;
+    padding:15px;
+}
+.mat-drawer { 
+    background-color: #023075;
+    color:#fff
+}
+.main-content {
+    padding:20px;
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+.mat-drawer  {
+    background: rgb(0 0 0 / 12%);
+    color: rgba(0, 0, 0, 0.87);   
+}
+.mat-toolbar {
+    background: rgb(0 0 0 / 12%);
+    color: rgba(0, 0, 0, 0.87);
+}

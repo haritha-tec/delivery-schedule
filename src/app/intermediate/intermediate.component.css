@@ -1,0 +1,21 @@
+div{
+    position: relative !important;
+}
+.example-form {
+    width: 90%;
+    padding: 1% 1%;
+  }
+  .example-full-width {
+    width: 30%;
+    padding-right: 1%;
+  }
+
+.mat-icon-button{
+    position: absolute ;
+    right:10px ;
+    top: 10px;
+}
+.alert-warning{
+  background-color:orangered;
+  
+}
