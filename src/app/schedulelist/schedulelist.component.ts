@@ -1,19 +1,20 @@
-import { Component, OnInit,PLATFORM_ID,Inject } from '@angular/core';
-import{BehaviorSubject} from 'rxjs';
-import {isPlatformBrowser} from '@angular/common';
-import{LocalstorageService} from '../localstorage/localstorage.service'
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Schedule } from '../datamodel/Schedule';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Component({
   selector: 'app-schedulelist',
   templateUrl: './schedulelist.component.html',
   styleUrls: ['./schedulelist.component.css']
 })
+
 export class SchedulelistComponent implements OnInit {
 
   static isBrowser = new BehaviorSubject<boolean>(null);
   myInfo$ = this.localStoreService.myData$;
-  eachSchedues:Schedule[]=[];  
+  schedules:Schedule[]=[];  
  
   constructor(@Inject(PLATFORM_ID) private platformId: any,
   private localStoreService : LocalstorageService) { 
@@ -22,23 +23,11 @@ export class SchedulelistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
-  //  this.myInfo$.subscribe((item:Schedule)=>{
-  //   this.eachSchedues=item;
-  //   this.allSchedules.push(this.eachSchedues);
-
     Object.keys(localStorage).forEach(data => 
-      {
-        
+      { 
         let item = localStorage.getItem(data);
-        this.eachSchedues=JSON.parse(item);       
-        
+        this.schedules.push(JSON.parse(item));
       });
-
-  // })
-   
   }
-
- 
 
 }

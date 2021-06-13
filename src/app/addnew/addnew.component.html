@@ -1,11 +1,11 @@
 <div class="example-form"> 
    <div>Start Point</div>  
     <mat-form-field appearance="fill" class="example-full-width">
-      <input matInput placeholder="Place" [(ngModel)]="newSchedule.startPlace "  >
+      <input matInput placeholder="Place" [(ngModel)]="newSchedule.startPlace "  required >
     </mat-form-field>
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>dd/mm/yyy</mat-label>
-            <input matInput [matDatepicker]="picker1" [(ngModel)]="newSchedule.startdate "  >
+            <input matInput [matDatepicker]="picker1" [(ngModel)]="newSchedule.startdate "  required>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -40,11 +40,11 @@
 
     <div>Destination Point</div>
     <mat-form-field appearance="fill" class="example-full-width">
-        <input matInput placeholder="Place" [(ngModel)]="newSchedule.destPlace"  name="place2">
+        <input matInput placeholder="Place" [(ngModel)]="newSchedule.destPlace"  name="place2" required>
     </mat-form-field>
     <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>dd/mm/yyyy</mat-label>
-        <input matInput [matDatepicker]="picker2" [(ngModel)]="newSchedule.destDate"  name="date2">
+        <input matInput [matDatepicker]="picker2" [(ngModel)]="newSchedule.destDate"  name="date2" required>
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
@@ -55,6 +55,11 @@
 
     <button  class="btnsave"  (click)="save()">Save    
     </button>
+
+    <div *ngIf="showAlert" class="alert alert-warning" role="alert">
+        <strong>Please enter required fields!!</strong>
+      </div>
+
     
 </div>
 

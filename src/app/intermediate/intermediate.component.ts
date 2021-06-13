@@ -1,11 +1,7 @@
-import { Component, Inject, Output } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import * as EventEmitter from 'events';
-import { from } from 'rxjs';
-import{IntermediateService} from '../intermediate.service';
-import{Schedule}from '../datamodel/Schedule'
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ScheduleDetails } from '../datamodel/ScheduleDetails';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
+import { IntermediateService } from '../intermediate.service';
 
 @Component({
   selector: 'app-intermediate',
@@ -22,9 +18,7 @@ export class IntermediateComponent  {
  
   constructor(public dialogRef: MatDialogRef<IntermediateComponent>,public service: IntermediateService) { 
     this.service=service;
-    
-    //this.newIntermediate=new array<ScheduleDetails?;
-  }
+      }
   showAlert:boolean=false;
 
   validate():boolean{
